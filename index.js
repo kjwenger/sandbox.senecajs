@@ -1,10 +1,9 @@
-const seneca = require('seneca')()
-
-seneca.add('role:math,cmd:sum', (msg, reply) => {
-  reply(null, {answer: (msg.left + msg.right)})
-})
-
-seneca.act({role: 'math', cmd: 'sum', left: 1, right: 2}, (err, result) => {
-  if (err) return console.error(err)
-  console.log(result)
-})
+require('seneca')()
+  .use('./lib/microservices/htmler')
+  .listen(8910)
+  .use('./lib/microservices/xmler')
+  .listen(8765)
+  .client(8910)
+  .act('role:convert,cmd:to', (_, msg) => console.log(msg))
+  .client(8765)
+  .act('role:convert,cmd:to', (_, msg) => console.log(msg))

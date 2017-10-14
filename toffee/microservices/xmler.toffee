@@ -1,0 +1,6 @@
+xmler = (options) ->
+  this.add "role:convert,cmd:from", (msg, respond) ->
+    respond object: {}
+  this.add "role:convert,cmd:to", (msg, respond) ->
+    respond xml: "<xml></xml>"
+module.exports = xmler

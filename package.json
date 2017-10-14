@@ -9,10 +9,12 @@
   },
   "scripts": {
     "compile:coffee": "coffee --compile --bare --map --output lib/ coffee/",
-    "compile:toffee": "toffee --compile --bare --map --output lib/microservices toffee/microservices/as-xml.toffee",
-    "compile:ts": "tsc --outDir lib/microservices ts/microservices/as-toml.ts",
+    "compile:toffee": "toffee --compile --bare --map --output lib/microservices toffee/microservices/xmler.toffee",
+    "compile:ts": "tsc --outDir lib/microservices ts/microservices/tomler.ts",
     "compile": "npm run compile:coffee & npm run compile:toffee & npm run compile:ts",
-    "prepare": "npm run compile",
+    "prebuild": "npm run compile",
+    "prepare": "npm build",
+    "prestart": "npm run compile",
     "start": "node index --seneca.log.print",
     "lint:js": "standard .",
     "lint:coffee": "coffeelint coffee/",
@@ -41,7 +43,6 @@
     "seneca": "^3.4.3"
   },
   "devDependencies": {
-    "bunyan": "^1.8.12",
     "coffeelint": "^2.0.6",
     "coffeescript": "^2.0.1",
     "eslint": "^4.8.0",
@@ -49,6 +50,7 @@
     "standard": "^10.0.3",
     "toffee-script": "^1.6.3-4",
     "tslint": "^5.7.0",
+    "tslint-config-standard": "^6.0.1",
     "typescript": "^2.5.3"
   }
 }
