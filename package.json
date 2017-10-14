@@ -1,0 +1,49 @@
+{
+  "name": "sandbox.senecajs",
+  "version": "0.1.0",
+  "description": "Sandbox for the Seneca micro-service framework",
+  "main": "index.js",
+  "engines": {
+    "node": "^8.7.0",
+    "npm": "^5.4.2"
+  },
+  "scripts": {
+    "compile:coffee": "coffee --compile --output lib/ coffee/",
+    "compile:toffee": "toffee --compile --output lib/microservices --bare --map toffee/microservices/as-xml.toffee",
+    "compile:ts": "tsc --outDir lib/microservices ts/microservices/as-toml.ts",
+    "compile": "npm run compile:coffee & npm run compile:toffee & npm run compile:ts",
+    "prepare": "npm run compile",
+    "start": "node index --seneca.log.print",
+    "lint": "standard .",
+    "test:unit": "mocha test/",
+    "test": "npm run lint & npm run test:unit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kjwenger/sandbox.senecajs.git"
+  },
+  "keywords": [
+    "node.js",
+    "senecajs.org",
+    "microservices",
+    "JavaScript"
+  ],
+  "author": "Klaus Wenger <kjwenger@yahoo.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kjwenger/sandbox.senecajs/issues"
+  },
+  "homepage": "https://github.com/kjwenger/sandbox.senecajs#readme",
+  "dependencies": {
+    "seneca": "^3.4.3"
+  },
+  "devDependencies": {
+    "bunyan": "^1.8.12",
+    "coffeescript": "^2.0.1",
+    "eslint": "^4.8.0",
+    "mocha": "^4.0.1",
+    "standard": "^10.0.3",
+    "toffee-script": "^1.6.3-4",
+    "typescript": "^2.5.3"
+  }
+}
